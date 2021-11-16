@@ -1,0 +1,94 @@
+<!--This file is based on
+    https://github.com/swagger-api/swagger-ui/blob/17093f2c7c0b77376d3cd7124dc35969c54ee0c6/dist/index.html
+    (Copyright 2020 SmartBear Software, Licensed under Apache 2.0)-->
+
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Swagger UI - Open Sage</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.51.2/swagger-ui.min.css" />
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3.51.2/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/swagger-ui-dist@3.51.2/favicon-16x16.png" sizes="16x16" />
+    <style>
+      html
+      {
+        box-sizing: border-box;
+        overflow: -moz-scrollbars-vertical;
+        overflow-y: scroll;
+      }
+
+      *,
+      *:before,
+      *:after
+      {
+        box-sizing: inherit;
+      }
+
+      body
+      {
+        margin:0;
+        background: #fafafa;
+      }
+    </style>
+  </head>
+
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position:absolute;width:0;height:0">
+        <defs>
+          <symbol viewBox="0 0 20 20" id="unlocked">
+                <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V6h2v-.801C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8z"></path>
+          </symbol>
+
+          <symbol viewBox="0 0 20 20" id="locked">
+            <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8zM12 8H8V5.199C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8z"/>
+          </symbol>
+
+          <symbol viewBox="0 0 20 20" id="close">
+            <path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.469-.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-.469-.469-.469-1.228 0-1.697.469-.469 1.228-.469 1.697 0L10 8.183l2.651-3.031c.469-.469 1.228-.469 1.697 0 .469.469.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c.469.469.469 1.229 0 1.698z"/>
+          </symbol>
+
+          <symbol viewBox="0 0 20 20" id="large-arrow">
+            <path d="M13.25 10L6.109 2.58c-.268-.27-.268-.707 0-.979.268-.27.701-.27.969 0l7.83 7.908c.268.271.268.709 0 .979l-7.83 7.908c-.268.271-.701.27-.969 0-.268-.269-.268-.707 0-.979L13.25 10z"/>
+          </symbol>
+
+          <symbol viewBox="0 0 20 20" id="large-arrow-down">
+            <path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.27-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.141z"/>
+          </symbol>
+
+
+          <symbol viewBox="0 0 24 24" id="jump-to">
+            <path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z"/>
+          </symbol>
+
+          <symbol viewBox="0 0 24 24" id="expand">
+            <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+          </symbol>
+
+        </defs>
+    </svg>
+
+    <div id="swagger-ui"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.51.2/swagger-ui-bundle.min.js" charset="UTF-8"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.51.2/swagger-ui-standalone-preset.min.js" charset="UTF-8"> </script>
+    <script>
+    window.onload = function() {
+      window.ui = SwaggerUIBundle({
+        spec: {"openapi": "3.0.3", "info": {"title": "Open Sage", "description": "Collection of methods allowing the access to sage", "version": "1.2.2"}, "servers": [{"url": "http://localhost:6060"}], "paths": {"/token": {"post": {"tags": ["Authentication"], "summary": "Get authentication token", "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object", "example": {"username": "certua@sage.com", "password": "pa55word", "scope": "read,write", "link_id": "8c74044e-d4a4-4632-85fe-e6c8cedf8ffd", "link_group": "tenant/subtenant/"}, "required": ["username", "password", "scope"], "properties": {"username": {"description": "The username for the account", "type": "string"}, "password": {"description": "The password for the account", "type": "string"}, "scope": {"description": "Comma separated. From the following ['read', 'write']", "type": "string"}, "link_id": {"description": "Limit to a specific link id", "type": "string"}, "link_group": {"description": "Can be used to restrict access to links. Auth tokens created with this argument will have access to all links with group starting with the link group. For example a link with group 'tenant/subtenant/' will be accessible if the link group is set to 'tenant'. Automatically applied when using token, all link groups specified as a further argument to a method will be appended to the auth token link group. For example if a subtenant has a key with group 'tenant/subtenant/' and specifies the argument 'advisor' then the resolved group will be 'tenant/subtenant/advisor'", "type": "string"}}}}}}, "description": "Gets authentication token that can be used with the API methods", "responses": {"200": {"description": "Contains the authentication key, valid for 30 minutes", "content": {"application/json": {"schema": {"type": "object", "example": {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNTE2MjM5MDIyfQ.L8i6g3PfcHlioHCCPURC9pmXT7gdJpx3kOoyAfNUwCc"}, "required": ["token"], "properties": {"token": {"description": "The authentication key, a jwt token", "type": "string"}}}}}}, "500": {"description": "We have encountered an error whilst processing your request!"}}}}, "/link": {"post": {"tags": ["Linking"], "summary": "Create link url", "parameters": [{"in": "header", "name": "Authentication-Token", "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e30.yXvILkvUUCBqAFlAv6wQ1Q-QRAjfe3eSosO949U73Vo", "description": "A JWT token fetched from /oauth/token", "required": true, "schema": {"type": "string"}}], "requestBody": {"required": true, "content": {"application/json": {"schema": {"type": "object", "example": {"expiry_time_secs": 3600, "callback": "https://certua.io/sage-success?nonce=fe50448e-2861-4cfb-b529-689ea0e5813d", "link_group": "tenant/subtenant/"}, "required": ["expiry_time_secs"], "properties": {"expiry_time_secs": {"description": "The seconds which this link is active for", "type": "integer"}, "callback": {"description": "The url which the user is redirected to after the authentication journey is over", "type": "string"}, "link_group": {"description": "Can be used to restrict access to links. Auth tokens created with this argument will have access to all links with group starting with the link group. For example a link with group 'tenant/subtenant/' will be accessible if the link group is set to 'tenant'. Automatically applied when using token, all link groups specified as a further argument to a method will be appended to the auth token link group. For example if a subtenant has a key with group 'tenant/subtenant/' and specifies the argument 'advisor' then the resolved group will be 'tenant/subtenant/advisor'", "type": "string"}}}}}}, "description": "Creates a link url with a specified expiry time and callback. If oauth token has link group attached then it will override the link group here", "responses": {"200": {"description": "Contains information needed to redirect the user", "content": {"application/json": {"schema": {"type": "object", "example": {"url": "https://open.sage.com/action/link?id=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibGlua19pZCI6IjhjNzQwNDRlLWQ0YTQtNDYzMi04NWZlLWU2YzhjZWRmOGZmZCIsImlhdCI6MTUxNjIzOTAyMn0.PpYWJlmNVqTqZnK8YU2a6O2bY8-W6grEiJwhckIbX6A", "link_id": "8c74044e-d4a4-4632-85fe-e6c8cedf8ffd"}, "required": ["url", "link_id"], "properties": {"url": {"description": "The url which can be used by the client to access their account", "type": "string"}, "link_id": {"description": "A link id which can then be used to request data from Sage upon successful sync", "type": "string"}}}}}}, "500": {"description": "We have encountered an error whilst processing your request!"}}}, "get": {"tags": ["Linking"], "summary": "Link status", "parameters": [{"in": "header", "name": "Authentication-Token", "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e30.yXvILkvUUCBqAFlAv6wQ1Q-QRAjfe3eSosO949U73Vo", "description": "A JWT token fetched from /oauth/token", "required": true, "schema": {"type": "string"}}, {"in": "query", "name": "link_id", "required": true, "example": "8c74044e-d4a4-4632-85fe-e6c8cedf8ffd", "description": "A link id which can then be used to request data from Sage upon successful sync", "schema": {"type": "string"}}], "description": "Provides status information about the link, provided link id", "responses": {"200": {"description": "Contains information about link status", "content": {"application/json": {"schema": {"type": "object", "example": {"requested_at": 1636732654, "linked_at": 1636741686, "company_name": "Certua", "contact_email": "accounting@certua.io", "synced_at": 1636742147, "last_data": 1636743272}, "required": ["requested_at", "last_data"], "properties": {"requested_at": {"description": "When we received the request for this link as a unix epoch time (ms)", "type": "integer"}, "linked_at": {"description": "When this link was completed as a unix epoch time (ms). Set to null if the link was not completed", "type": "integer"}, "company_name": {"description": "The name of the company. Set only when a link has been linked", "type": "string"}, "contact_email": {"description": "An email that can be used to contact the company set only when a link has been linked", "type": "string"}, "synced_at": {"description": "A timestamp set to the time this company had it's data pulled by your systems. Updated by calling PUT /link", "type": "integer"}, "last_data": {"description": "Epoch time ms indicating when this company last had accounting data pushed to it", "type": "integer"}}}}}}, "500": {"description": "We have encountered an error whilst processing your request!"}}}, "put": {"tags": ["Linking"], "summary": "Mark synced", "parameters": [{"in": "header", "name": "Authentication-Token", "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e30.yXvILkvUUCBqAFlAv6wQ1Q-QRAjfe3eSosO949U73Vo", "description": "A JWT token fetched from /oauth/token", "required": true, "schema": {"type": "string"}}, {"in": "query", "name": "link_id", "required": true, "example": "8c74044e-d4a4-4632-85fe-e6c8cedf8ffd", "description": "A link id which can then be used to request data from Sage upon successful sync", "schema": {"type": "string"}}], "description": "Tells us that you have synced data for this lead. A new webhook will be sent after this when new data is available. The 'synced_at' property will be set to the epoch time ms when the server processes the request", "responses": {"200": {"description": "200 OK", "content": {"application/json": {"schema": {"type": "string", "example": "OK"}}}}, "500": {"description": "We have encountered an error whilst processing your request!"}}}, "delete": {"tags": ["Linking"], "summary": "Invalidate link", "parameters": [{"in": "header", "name": "Authentication-Token", "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e30.yXvILkvUUCBqAFlAv6wQ1Q-QRAjfe3eSosO949U73Vo", "description": "A JWT token fetched from /oauth/token", "required": true, "schema": {"type": "string"}}, {"in": "query", "name": "link_id", "required": true, "example": "8c74044e-d4a4-4632-85fe-e6c8cedf8ffd", "description": "A link id which can then be used to request data from Sage upon successful sync", "schema": {"type": "string"}}], "description": "Deletes the link, making it invalid", "responses": {"200": {"description": "200 OK", "content": {"application/json": {"schema": {"type": "string", "example": "OK"}}}}, "500": {"description": "We have encountered an error whilst processing your request!"}}}}, "/management": {"get": {"tags": ["Link Management"], "summary": "Fetch links", "parameters": [{"in": "header", "name": "Authentication-Token", "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e30.yXvILkvUUCBqAFlAv6wQ1Q-QRAjfe3eSosO949U73Vo", "description": "A JWT token fetched from /oauth/token", "required": true, "schema": {"type": "string"}}, {"in": "query", "name": "link_group", "required": false, "example": "tenant/subtenant/", "description": "Can be used to restrict access to links. Auth tokens created with this argument will have access to all links with group starting with the link group. For example a link with group 'tenant/subtenant/' will be accessible if the link group is set to 'tenant'. Automatically applied when using token, all link groups specified as a further argument to a method will be appended to the auth token link group. For example if a subtenant has a key with group 'tenant/subtenant/' and specifies the argument 'advisor' then the resolved group will be 'tenant/subtenant/advisor'", "schema": {"type": "string"}}, {"in": "query", "name": "linked", "required": false, "example": true, "description": "Return only linked or unlinked links. Leave blank to return both", "schema": {"type": "boolean"}}, {"in": "query", "name": "synced", "required": false, "example": true, "description": "Return only links which have their most up to date data synced by your systems, or vice versa", "schema": {"type": "boolean"}}], "description": "Fetch the links and associated information, ordered by 'linked_at' DESC", "responses": {"200": {"description": "Contains information about all link statuses", "content": {"application/json": {"schema": {"type": "array", "example": [{"requested_at": 1636732654, "linked_at": 1636741686, "company_name": "Certua", "contact_email": "accounting@certua.io", "synced_at": 1636742147, "last_data": 1636743272}], "items": {"type": "object", "required": ["requested_at", "last_data"], "properties": {"requested_at": {"description": "When we received the request for this link as a unix epoch time (ms)", "type": "integer"}, "linked_at": {"description": "When this link was completed as a unix epoch time (ms). Set to null if the link was not completed", "type": "integer"}, "company_name": {"description": "The name of the company. Set only when a link has been linked", "type": "string"}, "contact_email": {"description": "An email that can be used to contact the company set only when a link has been linked", "type": "string"}, "synced_at": {"description": "A timestamp set to the time this company had it's data pulled by your systems. Updated by calling PUT /link", "type": "integer"}, "last_data": {"description": "Epoch time ms indicating when this company last had accounting data pushed to it", "type": "integer"}}}}}}}, "500": {"description": "We have encountered an error whilst processing your request!"}}}}, "/reports/profit-loss": {"get": {"tags": ["Reports"], "summary": "Fetch profit loss report", "parameters": [{"in": "header", "name": "Authentication-Token", "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e30.yXvILkvUUCBqAFlAv6wQ1Q-QRAjfe3eSosO949U73Vo", "description": "A JWT token fetched from /oauth/token", "required": true, "schema": {"type": "string"}}, {"in": "query", "name": "link_id", "required": true, "example": "8c74044e-d4a4-4632-85fe-e6c8cedf8ffd", "description": "A link id which can then be used to request data from Sage upon successful sync", "schema": {"type": "string"}}], "description": "Fetches the profit loss report", "responses": {"200": {"description": "Contains the profit loss report", "content": {"application/json": {"schema": {"type": "array", "example": [[{"section": "Revenue", "title": "Sales North", "isSummary": false}]], "items": {"type": "array", "items": {"required": ["section", "title", "isSummary"], "properties": {"section": {"description": "The name of the section", "type": "string"}, "title": {"description": "The title of this on the PL report", "type": "string"}, "isSummary": {"description": "Is this a summary row", "type": "boolean"}}}}}}}}, "500": {"description": "We have encountered an error whilst processing your request!"}}}}, "/reports/balance-sheet": {"get": {"tags": ["Reports"], "summary": "Fetch balance sheet", "parameters": [{"in": "header", "name": "Authentication-Token", "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.e30.yXvILkvUUCBqAFlAv6wQ1Q-QRAjfe3eSosO949U73Vo", "description": "A JWT token fetched from /oauth/token", "required": true, "schema": {"type": "string"}}, {"in": "query", "name": "link_id", "required": true, "example": "8c74044e-d4a4-4632-85fe-e6c8cedf8ffd", "description": "A link id which can then be used to request data from Sage upon successful sync", "schema": {"type": "string"}}], "description": "Fetches the balance sheet", "responses": {"200": {"description": "Contains the balance sheet", "content": {"application/json": {"schema": {"type": "object", "example": null, "required": [], "properties": null}}}}, "500": {"description": "We have encountered an error whilst processing your request!"}}}}, "/webhooks": null}},
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout"
+      });
+    };
+  </script>
+  </body>
+</html>
